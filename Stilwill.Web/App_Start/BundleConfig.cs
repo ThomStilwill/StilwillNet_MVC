@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Stilwill.Web
 {
@@ -9,7 +8,8 @@ namespace Stilwill.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.cookie.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -23,9 +23,13 @@ namespace Stilwill.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+            bundles.Add(new ScriptBundle("~/bundles/libs").Include(
+                      "~/Scripts/toastr.js",
+                      "~/Scripts/underscore.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/application")
+              .Include("~/Scripts/app/init.js",
+                       "~/Scripts/app/layout.js"));
         }
     }
 }

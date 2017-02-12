@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Stilwill.Web.Areas.Auto.Models;
 
 namespace Stilwill.Web.Models
 {
@@ -29,5 +30,9 @@ namespace Stilwill.Web.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<ServiceActivity> ServiceActivities { get; set; }
     }
 }

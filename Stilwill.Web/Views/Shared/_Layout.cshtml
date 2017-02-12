@@ -1,15 +1,32 @@
-﻿<!DOCTYPE html>
+﻿@using System.Reflection
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    <link rel="SHORTCUT ICON" href="~/Content/Images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="~/Content/App/site.less">
+    
     @Scripts.Render("~/bundles/modernizr")
 
+    @{
+        var title = "Stilwill.net";
+        var viewTitle = (string) ViewData["Title"];
+        if (!string.IsNullOrEmpty(viewTitle))
+        {
+            title += $" - {viewTitle}";
+        }
+
+        var fullVersionNumber = Assembly.GetAssembly(typeof (MvcApplication)).GetName().Version.ToString();
+
+        var version = string.Join(".", fullVersionNumber.Split('.').Take(2).ToArray());
+    }
+
+    <title>@title</title>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<header>
+    <div class="navbar  navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -17,28 +34,40 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Stilwill.net", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+</header>
+<div class="container body-content" id="content">
+    @RenderBody()
+</div>
+<footer>
+    <div class="footer-left">
+        <button id="themeButton" class="navbar-right icon-button glyphicon-adjust"></button>
     </div>
+    <div class="footer-center">ver @version</div>
+    <div class="footer-right">&#169; @DateTime.Now.Year Thom Stilwill</div>
+</footer>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/libs")
+@Scripts.Render("~/bundles/application")
+<script type="text/javascript">
+    var app = app || {};
+    app.basePath("@Url.Content("~/")");
+    app.controllerPath("@Url.Action("")");
+</script>
+@RenderSection("scripts", required: false)
+
 </body>
 </html>
+
