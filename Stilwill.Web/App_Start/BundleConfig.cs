@@ -25,7 +25,11 @@ namespace Stilwill.Web
 
             bundles.Add(new ScriptBundle("~/bundles/libs").Include(
                       "~/Scripts/toastr.js",
-                      "~/Scripts/underscore.js"));
+                      "~/Scripts/underscore.js",
+                      "~/Scripts/moment.min.js",
+                      "~/Scripts/moment.with-locales.min.js",
+                      "~/Scripts/QuickFit.js"
+                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/application")
               .Include("~/Scripts/app/init.js",
