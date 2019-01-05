@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+
+    string[] skip = { "ALL_HTTP","ALL_RAW" };
+}
+
+
+<p>Address: @HttpContext.Current.Request.UserHostAddress</p>
+
+
+<table>
+
+    @foreach (string key in Request.ServerVariables)
+    {
+
+        if (!skip.Contains(key)) {
+            <tr>
+                <td>@key</td>
+                <td>@Request[key]</td>
+            </tr>
+        }
+    }
+
+</table>

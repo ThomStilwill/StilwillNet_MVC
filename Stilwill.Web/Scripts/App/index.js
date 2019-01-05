@@ -67,6 +67,20 @@
             });
     };
 
+    function interceptClickEvent(e) {
+        var href;
+        var target = e.target || e.srcElement;
+        if (target.tagName === 'A') {
+            href = target.getAttribute('href');
+
+            var evt = e ? e : window.event;
+            if (evt.ctrlKey) {
+                console.log("ctrlClicked");
+                this.target = event.ctrlKey ? "_blank" : "_self";
+            }
+        }
+    }
+
     var init = function () {
 
         clockDiv = $("#clock");
@@ -80,11 +94,19 @@
         tickDiv = $("#tick");
 
         bindEvents();
+
+        //loadWeather();
+
+        if (document.addEventListener) {
+            document.addEventListener('click', interceptClickEvent);
+        } else if (document.attachEvent) {
+            document.attachEvent('onclick', interceptClickEvent);
+        }
+
         setTimeout(function () {
             resize();
         }, 500);
 
-        //loadWeather();
     };
 
     return {

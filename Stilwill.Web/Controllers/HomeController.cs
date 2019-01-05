@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Stilwill.Web.Code;
 using System.Web.Mvc;
 
 namespace Stilwill.Web.Controllers
@@ -12,19 +9,23 @@ namespace Stilwill.Web.Controllers
         {
             return View();
         }
-
-        public ActionResult About()
+     
+        [AllowAnonymous]
+        public ActionResult MenuBar(string submit)
         {
-            ViewBag.Message = "Your application description page.";
+            var model = MenuOrchestrator.GetMenu();
+            return PartialView("_MenuBar",model);
+        }
 
+        public ActionResult Work()
+        {
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Play()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
+
     }
 }

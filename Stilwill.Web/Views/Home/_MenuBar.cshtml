@@ -1,0 +1,69 @@
+﻿@model List<Stilwill.Web.Models.Menu>
+@using Stilwill.Web.Code
+
+<ul class="nav navbar-nav">
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Google<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="https://mail.google.com">eMail</a></li>
+            <li><a href="https://www.google.com/calendar/render?tab=mc">Calendar</a></li>
+            <li><a href="https://docs.google.com/spreadsheets">Sheets</a></li>
+            <li><a href="https://keep.google.com">Keep</a></li>
+            <li><a href="https://drive.google.com">Drive</a></li>
+            <li><a href="https://plus.google.com">Google+</a></li>
+            <li><a href="https://play.google.com">Play Store</a></li>
+        </ul>
+    </li>
+
+     
+    @* <li class="dropdown" id="LinksMenu"> *@
+    @*     @Html.AuthorizeAction("LinksMenu", "Home", new { area = "" }) *@
+    @* </li> *@
+
+</ul>
+
+<ul class="nav navbar-nav">
+    <li>
+        @Html.ActionLink("Work", "Work", "Home", new { area = string.Empty }, new { hidefocus = "hidefocus" })
+    </li>
+    <li>
+        @Html.ActionLink("Play", "Play", "Home", new { area = string.Empty }, new { hidefocus = "hidefocus" })
+    </li>
+    @if (HttpUtils.IsLocal() && Model != null)
+    {
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                @foreach (var menu in Model)
+                {
+                    <li><a href="@menu.Href">@menu.Title</a></li>
+                }
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="http://sol:5000/">Sol (NAS)</a></li>
+                <li><a href="http://192.168.1.1">Nighthawk</a></li>
+                <li><a href="http://192.168.1.49">HP 8100 Printer</a></li>
+                <li><a href="http://192.168.1.202">Netgear Switch GS108T</a></li>
+                <li><a href="http://192.168.1.24">Netgear Extender EX6200</a></li>
+            </ul>
+        </li>
+    }
+</ul>
+
+
+<div id="search" class="navbar-right">
+    <form class="navbar-form" role="search" method="get" action="http://www.google.com/search" target="_blank">
+        <div class="form-group input-group-sm search-input">
+            <input name="q" type="search" results="5" autosave="AutoSaveValue" placeholder="Search" class="form-control input-sm">
+        </div>
+    </form>
+</div>
+@* *@
+@* <div class="navbar-collapse collapse"> *@
+@*     @Html.Partial("_LoginPartial") *@
+@* </div> *@

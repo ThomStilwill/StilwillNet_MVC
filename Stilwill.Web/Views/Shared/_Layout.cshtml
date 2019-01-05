@@ -27,7 +27,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-default xnavbar-fixed-top" role="navigation" >
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" >
         
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -38,11 +38,7 @@
             @Html.ActionLink("Stilwill.net", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-
-            </ul>
-            @Html.Partial("_LoginPartial")
+            @Html.Action("MenuBar", "Home", new { area = string.Empty })
         </div>
     </nav>
 </header>
