@@ -30,6 +30,22 @@
     <li>
         @Html.ActionLink("Play", "Play", "Home", new { area = string.Empty }, new { hidefocus = "hidefocus" })
     </li>
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tech<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="https://www1.domain.com/controlpanel/foundation/#/">Domain.com</a></li>
+            <li><a href="https://www.networksolutions.com">Network Solutions</a></li>
+            <li><a href="https://portal.azure.com/#home">Azure Portal</a></li>
+            <li><a href="https://dashboard.heroku.com/apps">Heroku</a></li>
+            <li><a href="https://c9.io/stilwilltc">Cloud9</a></li>
+            <li class="divider"></li>
+            <li><a href="http://phaselineblue.com">Phaselineblue.com</a></li>
+            <li><a href="http://www.hashtagcoding.com/">#Coding</a></li>
+        </ul>
+    </li>
+
+
     @if (HttpUtils.IsLocal() && Model != null)
     {
         <li class="dropdown">
