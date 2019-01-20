@@ -30,12 +30,11 @@ app.Layout = (function () {
         themeButton = $("#themeButton");
 
         var themeCookie = $.cookie('theme');
-        if (themeCookie) {
-            setTheme(themeCookie);
+        if (!themeCookie) {
+            themeCookie = 'light';
         }
-
+        setTheme(themeCookie);
         bindEvents();
-
     };
 
     return {
